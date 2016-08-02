@@ -1,0 +1,155 @@
+%% 
+%% Packages
+%% 
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+
+%% 
+%% NSERC Discovery margins and page size
+%% 
+\usepackage{geometry}
+\geometry{
+    letterpaper,
+    total={216mm,279mm}, %< NSERC size
+    % margin=2.00cm,     %< default
+    margin=1.87cm,       %< NSERC tightest
+}
+
+%% 
+%% NSERC requirement:
+%% Your name must appear outside the set margins of the page, 
+%%   at the top right corner of every page;
+\usepackage[explicit]{titlesec}
+\newpagestyle{titlesec_proposal}{\sethead{Research Proposal}{\thepage}{Andrea Tagliasacchi}\setfoot{}{}{}}
+\newpagestyle{titlesec_budget}{\sethead{Budget Justification}{\thepage}{Andrea Tagliasacchi}\setfoot{}{}{}}
+\newpagestyle{titlesec_online}{\sethead{Online Parts}{\thepage}{Andrea Tagliasacchi}\setfoot{}{}{}}
+
+
+%% 
+%% FONT: unfortunately does not work well for math.
+%%       \usepackage{mathptmx} (missing) would be better
+%% 
+\usepackage{times}
+
+%% 
+%% Insert symbols on figures
+%%
+\usepackage{overpic}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+
+%% 
+%% Space between caption and figure 
+%% adds \caption*
+%% Captions are all italic
+%%
+\usepackage[skip=.05in]{caption} 
+\captionsetup[figure]{labelfont=it,textfont=it}
+
+\newcommand{\EPFL}{Ecole Polytechnique Federale de Lausanne}
+% \newcommand{\EPFL}{\'Ecole Polytechnique F\'ed\'erale de Lausanne}
+
+%% 
+%% Reduce space between lines
+%%
+\linespread{.95}
+
+%% 
+%% Better underlining "\ul"
+%%
+\usepackage{soul}% \ul http://ctan.org/pkg/soul
+\setul{2pt}{.4pt}% 1pt below contents
+
+%% 
+%% PhD & MSc macros
+%%
+\usepackage{xspace} 
+\newcommand{\PhD}{{Ph.D.}\xspace}
+\newcommand{\MSc}{{M.Sc.}\xspace}
+
+%% 
+%% Section title tweaks
+%% 
+\usepackage{titlesec}
+% \titleformat{\section}{\normalfont\sffamily\bfseries\itshape}{\thesection \quad #1}{1em}{}
+\titleformat{\section}{\normalfont\bfseries}{#1}{1em}{}
+\titleformat{\subsection}{\normalfont}{\underline{\smash{#1}}}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize}{}{2pt}{\underline{\smash{#1}}}{}
+% left, before, after, right
+\titlespacing{\section}{0pt}{\parskip}{-.5\parskip}
+\titlespacing{\subsection}{0pt}{0in}{-.5\parskip}
+\titlespacing{\paragraph}{0pt}{0in}{\parskip}
+
+%%
+%% text layout
+%%
+% Insert whitespace at the end of a paragraph
+\setlength{\parskip}{.5\baselineskip}%
+% Don't intent by default on new paragraph
+\setlength{\parindent}{0pt}%
+
+
+%% 
+%% Bibliography
+%% IF PROBLEMS: rm -rf `biber --cache`
+% \usepackage[sorting=ydnt,style=alphabetic,citestyle=alphabetic,maxbibnames=99]{biblatex}
+\usepackage[backend=biber,sorting=ydnt,style=alphabetic,citestyle=alphabetic,maxbibnames=1]{biblatex}
+% \usepackage[backend=biber,sorting=ydnt,style=alphabetic,citestyle=alphabetic,maxbibnames=1]{biblatex}
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=author,match=Tagliasacchi,final]
+      \step[fieldset=keywords, fieldvalue=tagliasacchi]
+    }
+  }
+}
+% Reduce spacing between references
+\setlength\bibitemsep{.1\baselineskip}
+
+%% 
+%% fix from: http://arxiv.org/help/faq/mistakes
+%% 
+\usepackage[bookmarks=false]{hyperref}
+
+%% 
+%% To avoid arXiv make mess with picture extensions
+%% 
+\usepackage{ifpdf}
+
+%% 
+%% To define colors
+%% 
+\usepackage{color}
+\definecolor{lightgray}{rgb}{0.6, 0.6, 0.6}
+
+%% 
+%% Portions that {need major work, comments}
+%% 
+\newenvironment{draft}{\color{blue}}{\color{black}}
+\newcommand{\INSTRUCTIONS}[1]{{\small\textcolor{lightgray}{[INSTRUCTIONS] #1}}}
+\newcommand{\copypaste}[1]{{\textcolor{blue}{#1}}}
+% \newcommand{\copypaste}[1]{{{#1}}}
+\newcommand{\OK}{{\textcolor{green}{OK!}}}
+\newcommand{\todo}[1]{{\textcolor{red}{#1}}}
+\newcommand{\TODO}[1]{{\textcolor{red}{[TODO: #1]}}}
+\newcommand{\ignore}[1]{}
+\newcommand{\improve}[1]{{\textcolor{red}{?#1?}}}
+
+%% 
+%% Performs the following type of transformation:
+%%   \Fig{figname} => Fig.~\ref{fig:figname}
+\newcommand{\Fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\Figure}[1]{Figure~\ref{fig:#1}}
+\newcommand{\Eq}[1]{Eq.~\ref{eq:#1}}
+\newcommand{\Sec}[1]{Sec.~\ref{sec:#1}}
+\newcommand{\Section}[1]{Section~\ref{sec:#1}}
+\newcommand{\Appendix}[1]{Appendix~\ref{app:#1}}
+
+%% 
+%% Quotes to avoid annoying ``
+%% 
+\newcommand{\QUOTE}[1]{``#1''}
+
+%% 
+%% Make everything look amazing (and shorter by 10% typically)
+%% 
+\usepackage{microtype}
